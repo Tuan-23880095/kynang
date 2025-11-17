@@ -29,59 +29,66 @@
         <!-- Tiêu đề -->
         <header class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-blue-700 mb-2">Hoạt động nhóm: "Dọn dẹp To-Do List"</h1>
-            <p class="text-lg text-gray-600">Sử dụng Ma trận Eisenhower để phân loại nhiệm vụ</p>
-            <p class="mt-4 text-sm text-gray-500"><strong>Hướng dẫn:</strong> Kéo và thả các "nhiệm vụ" từ danh sách bên trái vào 4 góc ma trận bên phải.</p>
+            <p class="mt-4 text-sm text-gray-500"><strong>Hướng dẫn:</strong> Kéo và thả các "nhiệm vụ" từ danh sách bên dưới vào 4 góc ma trận bên trên.</p>
         </header>
 
         <!-- Khu vực chính: Danh sách nhiệm vụ và Ma trận -->
         <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <!-- Cột 1: Danh sách nhiệm vụ -->
-            <aside class="md:col-span-1 bg-white p-6 rounded-lg shadow-lg">
+            <!-- Cột 1: Danh sách nhiệm vụ (order-2, md:order-1) -->
+            <!-- Trên mobile, nó sẽ ở order 2 (bên dưới) -->
+            <!-- Trên desktop, nó sẽ ở order 1 (bên trái) -->
+            <aside class="md:col-span-1 order-2 md:order-1 bg-white p-4 md:p-6 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">Danh sách nhiệm vụ</h2>
-                <div id="taskList" class="space-y-3 min-h-[300px]">
+                <!-- 
+                  Mobile: flex, flex-row, overflow-x-auto, space-x-3, min-h-[120px]
+                  Desktop: md:flex-col, md:overflow-x-hidden, md:space-x-0, md:space-y-3, md:min-h-[300px]
+                -->
+                <div id="taskList" class="min-h-[120px] md:min-h-[300px] flex flex-row md:flex-col overflow-x-auto md:overflow-x-hidden md:overflow-y-auto space-x-3 md:space-x-0 md:space-y-3 p-2 md:p-0">
                     <!-- Các nhiệm vụ sẽ được thêm vào đây bằng JavaScript -->
                 </div>
             </aside>
 
-            <!-- Cột 2: Ma trận Eisenhower -->
-            <section class="md:col-span-2">
+            <!-- Cột 2: Ma trận Eisenhower (order-1, md:order-2) -->
+            <!-- Trên mobile, nó sẽ ở order 1 (bên trên) -->
+            <!-- Trên desktop, nó sẽ ở order 2 (bên phải) -->
+            <section class="md:col-span-2 order-1 md:order-2">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     
                     <!-- Góc 1: Quan trọng & Khẩn cấp -->
-                    <div id="q1" class="quadrant bg-red-100 border-2 border-red-300 rounded-lg p-5 min-h-[300px]" data-quadrant-name="q1">
-                        <h3 class="text-xl font-bold text-red-700 text-center mb-4">
+                    <div id="q1" class="quadrant bg-red-100 border-2 border-red-300 rounded-lg p-5 min-h-[250px] md:min-h-[300px]" data-quadrant-name="q1">
+                        <h3 class="text-lg md:text-xl font-bold text-red-700 text-center mb-4">
                             Góc 1: Làm ngay
-                            <span class="block text-sm font-normal text-red-600">(Quan trọng & Khẩn cấp)</span>
+                            <span class="block text-xs md:text-sm font-normal text-red-600">(Quan trọng & Khẩn cấp)</span>
                         </h3>
-                        <div class="dropzone space-y-2 min-h-[200px]"></div>
+                        <div class="dropzone space-y-2 min-h-[150px] md:min-h-[200px]"></div>
                     </div>
 
                     <!-- Góc 2: Quan trọng & Không khẩn cấp -->
-                    <div id="q2" class="quadrant bg-blue-100 border-2 border-blue-300 rounded-lg p-5 min-h-[300px]" data-quadrant-name="q2">
-                        <h3 class="text-xl font-bold text-blue-700 text-center mb-4">
+                    <div id="q2" class="quadrant bg-blue-100 border-2 border-blue-300 rounded-lg p-5 min-h-[250px] md:min-h-[300px]" data-quadrant-name="q2">
+                        <h3 class="text-lg md:text-xl font-bold text-blue-700 text-center mb-4">
                             Góc 2: Lên lịch
-                            <span class="block text-sm font-normal text-blue-600">(Quan trọng & Không khẩn cấp)</span>
+                            <span class="block text-xs md:text-sm font-normal text-blue-600">(Quan trọng & Không khẩn cấp)</span>
                         </h3>
-                        <div class="dropzone space-y-2 min-h-[200px]"></div>
+                        <div class="dropzone space-y-2 min-h-[150px] md:min-h-[200px]"></div>
                     </div>
 
                     <!-- Góc 3: Không quan trọng & Khẩn cấp -->
-                    <div id="q3" class="quadrant bg-orange-100 border-2 border-orange-300 rounded-lg p-5 min-h-[300px]" data-quadrant-name="q3">
-                        <h3 class="text-xl font-bold text-orange-700 text-center mb-4">
+                    <div id="q3" class="quadrant bg-orange-100 border-2 border-orange-300 rounded-lg p-5 min-h-[250px] md:min-h-[300px]" data-quadrant-name="q3">
+                        <h3 class="text-lg md:text-xl font-bold text-orange-700 text-center mb-4">
                             Góc 3: Ủy thác
-                            <span class="block text-sm font-normal text-orange-600">(Không quan trọng & Khẩn cấp)</span>
+                            <span class="block text-xs md:text-sm font-normal text-orange-600">(Không quan trọng & Khẩn cấp)</span>
                         </h3>
-                        <div class="dropzone space-y-2 min-h-[200px]"></div>
+                        <div class="dropzone space-y-2 min-h-[150px] md:min-h-[200px]"></div>
                     </div>
 
                     <!-- Góc 4: Không quan trọng & Không khẩn cấp -->
-                    <div id="q4" class="quadrant bg-gray-200 border-2 border-gray-400 rounded-lg p-5 min-h-[300px]" data-quadrant-name="q4">
-                        <h3 class="text-xl font-bold text-gray-700 text-center mb-4">
+                    <div id="q4" class="quadrant bg-gray-200 border-2 border-gray-400 rounded-lg p-5 min-h-[250px] md:min-h-[300px]" data-quadrant-name="q4">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-700 text-center mb-4">
                             Góc 4: Xóa bỏ
-                            <span class="block text-sm font-normal text-gray-600">(Không quan trọng & Không khẩn cấp)</span>
+                            <span class="block text-xs md:text-sm font-normal text-gray-600">(Không quan trọng & Không khẩn cấp)</span>
                         </h3>
-                        <div class="dropzone space-y-2 min-h-[200px]"></div>
+                        <div class="dropzone space-y-2 min-h-[150px] md:min-h-[200px]"></div>
                     </div>
 
                 </div>
@@ -92,86 +99,86 @@
 
         <!-- Phần Thảo luận & Lời khuyên -->
         <section class="mt-10 max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-bold text-center text-indigo-700 mb-6">Thảo luận & Lời khuyên</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-700 mb-6">Thảo luận & Lời khuyên</h2>
             
-            <p class="text-center text-lg text-gray-700 mb-6">
-                Sau khi hoàn thành, hãy so sánh kết quả của nhóm bạn với các nhóm khác. Sẽ có những nhiệm vụ gây tranh cãi (ví dụ: "Đi xem phim với bạn mới", "Đi họp CLB").
+            <p class="text-center text-base md:text-lg text-gray-700 mb-6">
+                Sau khi hoàn thành, hãy so sánh kết quả của nhóm bạn với các nhóm khác. Sẽ có những nhiệm vụ gây tranh rãi (ví dụ: "Đi xem phim với bạn mới", "Đi họp CLB").
             </p>
-            <p class="text-center text-xl font-semibold text-red-600 bg-red-50 p-4 rounded-md mb-8">
+            <p class="text-center text-lg md:text-xl font-semibold text-red-600 bg-red-50 p-4 rounded-md mb-8">
                 Đây là điểm mấu chốt: "Quan trọng" là thứ do BẠN định nghĩa, dựa trên mục tiêu dài hạn của bạn.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Lời khuyên cho 4 góc -->
                 <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
-                    <h4 class="font-bold text-red-700 text-lg">Góc 1: Làm ngay (Quan trọng, Khẩn cấp)</h4>
-                    <p class="text-gray-600 mt-2">Đây là các "khủng hoảng". Bạn phải làm chúng ngay. Cố gắng giảm bớt các việc ở góc này bằng cách lập kế hoạch tốt hơn (chuyển chúng sang Góc 2 từ trước).</p>
+                    <h4 class="font-bold text-base md:text-lg text-red-700">Góc 1: Làm ngay (Quan trọng, Khẩn cấp)</h4>
+                    <p class="text-gray-600 mt-2 text-sm md:text-base">Đây là các "khủng hoảng". Bạn phải làm chúng ngay. Cố gắng giảm bớt các việc ở góc này bằng cách lập kế hoạch tốt hơn (chuyển chúng sang Góc 2 từ trước).</p>
                 </div>
                 
                 <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                    <h4 class="font-bold text-blue-700 text-lg">Góc 2: Lên lịch (Quan trọng, Không khẩn cấp)</h4>
-                    <p class="text-gray-600 mt-2">Đây là góc "thành công" của bạn: học tập, phát triển kỹ năng, xây dựng quan hệ, lập kế hoạch. Hãy dành nhiều thời gian nhất ở góc này.</p>
+                    <h4 class="font-bold text-base md:text-lg text-blue-700">Góc 2: Lên lịch (Quan trọng, Không khẩn cấp)</h4>
+                    <p class="text-gray-600 mt-2 text-sm md:text-base">Đây là góc "thành công" của bạn: học tập, phát triển kỹ năng, xây dựng quan hệ, lập kế hoạch. Hãy dành nhiều thời gian nhất ở góc này.</p>
                 </div>
 
                 <div class="bg-orange-50 border border-orange-200 p-4 rounded-lg">
-                    <h4 class="font-bold text-orange-700 text-lg">Góc 3: Ủy thác (Không quan trọng, Khẩn cấp)</h4>
-                    <p class="text-gray-600 mt-2">Đây là những việc làm gián đoạn, thường là việc "xã giao" hoặc việc vặt. Nếu có thể, hãy ủy thác, tự động hóa, hoặc học cách nói "không" một cách lịch sự.</p>
+                    <h4 class="font-bold text-base md:text-lg text-orange-700">Góc 3: Ủy thác (Không quan trọng, Khẩn cấp)</h4>
+                    <p class="text-gray-600 mt-2 text-sm md:text-base">Đây là những việc làm gián đoạn, thường là việc "xã giao" hoặc việc vặt. Nếu có thể, hãy ủy thác, tự động hóa, hoặc học cách nói "không" một cách lịch sự.</p>
                 </div>
 
                 <div class="bg-gray-100 border border-gray-300 p-4 rounded-lg">
-                    <h4 class="font-bold text-gray-700 text-lg">Góc 4: Xóa bỏ (Không quan trọng, Không khẩn cấp)</h4>
-                    <p class="text-gray-600 mt-2">Đây là những việc làm lãng phí thời gian, gây xao lãng. Hãy thẳng thắn loại bỏ chúng để tập trung vào những việc ở Góc 1 và 2.</p>
+                    <h4 class="font-bold text-base md:text-lg text-gray-700">Góc 4: Xóa bỏ (Không quan trọng, Không khẩn cấp)</h4>
+                    <p class="text-gray-600 mt-2 text-sm md:text-base">Đây là những việc làm lãng phí thời gian, gây xao lãng. Hãy thẳng thắn loại bỏ chúng để tập trung vào những việc ở Góc 1 và 2.</p>
                 </div>
             </div>
         </section>
 
         <!-- Phần Ma trận tham khảo -->
         <section id="referenceMatrixSection" class="mt-10 max-w-7xl mx-auto" style="display: none;">
-            <h2 class="text-3xl font-bold text-center text-indigo-700 mb-2">Gợi ý Ma trận tham khảo</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-700 mb-2">Gợi ý Ma trận tham khảo</h2>
             <p class="text-center text-gray-600 mb-6">Đây là một cách sắp xếp để sinh viên tham khảo. Kết quả của bạn có thể khác biệt tùy theo mục tiêu cá nhân!</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 
                 <!-- Góc 1 tham khảo -->
-                <div class="bg-red-100 border-2 border-red-300 rounded-lg p-5 min-h-[200px]">
-                    <h3 class="text-xl font-bold text-red-700 text-center mb-4">Góc 1: Làm ngay</h3>
+                <div class="bg-red-100 border-2 border-red-300 rounded-lg p-5 min-h-[150px] md:min-h-[200px]">
+                    <h3 class="text-lg md:text-xl font-bold text-red-700 text-center mb-4">Góc 1: Làm ngay</h3>
                     <div class="space-y-2">
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Ôn thi giữa kỳ môn Triết</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Làm bài tập AV (nếu sắp đến hạn)</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Ôn thi giữa kỳ môn Triết</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Làm bài tập AV (nếu sắp đến hạn)</div>
                     </div>
                 </div>
 
                 <!-- Góc 2 tham khảo -->
-                <div class="bg-blue-100 border-2 border-blue-300 rounded-lg p-5 min-h-[200px]">
-                    <h3 class="text-xl font-bold text-blue-700 text-center mb-4">Góc 2: Lên lịch</h3>
+                <div class="bg-blue-100 border-2 border-blue-300 rounded-lg p-5 min-h-[150px] md:min-h-[200px]">
+                    <h3 class="text-lg md:text-xl font-bold text-blue-700 text-center mb-4">Góc 2: Lên lịch</h3>
                     <div class="space-y-2">
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Tìm tài liệu làm tiểu luận</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Đọc sách chuyên ngành</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Lập kế hoạch tuần tới</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Đi tập thể dục</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Gọi về cho gia đình</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Dọn dẹp phòng trọ</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Tìm tài liệu làm tiểu luận</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Đọc sách chuyên ngành</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Lập kế hoạch tuần tới</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Đi tập thể dục</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Gọi về cho gia đình</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Dọn dẹp phòng trọ</div>
                     </div>
                 </div>
 
                 <!-- Góc 3 tham khảo -->
-                <div class="bg-orange-100 border-2 border-orange-300 rounded-lg p-5 min-h-[200px]">
-                    <h3 class="text-xl font-bold text-orange-700 text-center mb-4">Góc 3: Ủy thác</h3>
+                <div class="bg-orange-100 border-2 border-orange-300 rounded-lg p-5 min-h-[150px] md:min-h-[200px]">
+                    <h3 class="text-lg md:text-xl font-bold text-orange-700 text-center mb-4">Góc 3: Ủy thác</h3>
                     <div class="space-y-2">
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Đi họp CLB (trừ khi bạn là chủ chốt)</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Kiểm tra email công việc/học tập</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Trả lời tin nhắn (không khẩn cấp)</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Đi xem phim với bạn mới (việc xã giao)</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Đi họp CLB (trừ khi bạn là chủ chốt)</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Kiểm tra email công việc/học tập</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Trả lời tin nhắn (không khẩn cấp)</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Đi xem phim với bạn mới (việc xã giao)</div>
                     </div>
                 </div>
 
                 <!-- Góc 4 tham khảo -->
-                <div class="bg-gray-200 border-2 border-gray-400 rounded-lg p-5 min-h-[200px]">
-                    <h3 class="text-xl font-bold text-gray-700 text-center mb-4">Góc 4: Xóa bỏ</h3>
+                <div class="bg-gray-200 border-2 border-gray-400 rounded-lg p-5 min-h-[150px] md:min-h-[200px]">
+                    <h3 class="text-lg md:text-xl font-bold text-gray-700 text-center mb-4">Góc 4: Xóa bỏ</h3>
                     <div class="space-y-2">
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Lướt TikTok</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Mua sắm quần áo online</div>
-                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400">Ngủ trưa 1 tiếng (trừ khi cần)</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Lướt TikTok</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Mua sắm quần áo online</div>
+                        <div class="task-item-static bg-yellow-200 p-3 rounded-lg shadow-sm border border-yellow-400 text-sm md:text-base">Ngủ trưa 1 tiếng (trừ khi cần)</div>
                     </div>
                 </div>
             </div>
@@ -255,7 +262,8 @@
                 taskListContainer.innerHTML = ''; // Xóa sạch
                 initialTasks.forEach((taskText, index) => {
                     const taskElement = document.createElement('div');
-                    taskElement.classList.add('task-item', 'bg-yellow-100', 'p-3', 'rounded-lg', 'shadow-sm', 'cursor-move', 'border', 'border-yellow-300', 'transition-all');
+                    // Thêm class cho mobile (w-40, h-24, text-sm) và reset trên desktop (md:w-full, md:h-auto, md:text-base)
+                    taskElement.classList.add('task-item', 'bg-yellow-100', 'p-3', 'rounded-lg', 'shadow-sm', 'cursor-move', 'border', 'border-yellow-300', 'transition-all', 'flex-shrink-0', 'w-40', 'md:w-full', 'h-24', 'md:h-auto', 'text-sm', 'md:text-base', 'flex', 'items-center', 'justify-center', 'text-center');
                     taskElement.textContent = taskText;
                     taskElement.draggable = true;
                     taskElement.id = 'task-' + index;
